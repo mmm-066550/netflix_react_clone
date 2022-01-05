@@ -1,0 +1,23 @@
+import { combineReducers } from "redux";
+
+import User_Login from "./userLogin";
+import TMDB_Trendings from "./TMDB_Trendings";
+import Populars from "./Populars";
+import Now_Playing from "./Now_Playing";
+import Top_Rated from "./Top_Rated";
+import Movies from "./Movies";
+import Series from "./Series";
+import Movie from "./Movie";
+import Serie from "./Serie";
+
+export default combineReducers({
+  isUserLoggedIn: User_Login,
+  trendings: TMDB_Trendings,
+  populars: Populars,
+  now_playing: Now_Playing,
+  top_rated: Top_Rated,
+  movies: Movies,
+  series: Series,
+  movie: Movie,
+  serie: Serie,
+});

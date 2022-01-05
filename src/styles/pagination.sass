@@ -1,0 +1,32 @@
+@import './variables'
+
+.pagination-container
+    display: flex
+    align-items: center
+    justify-content: center
+    a
+        color: $netflix-white !important
+        border-radius: 1000px
+        overflow: hidden
+        display: flex
+        align-items: center
+        justify-content: space-between
+        margin: 1rem
+        background: $netflix-red
+        transition: .2s
+        &:hover
+            box-shadow: 1px 1px 10px $netflix-red
+            
+        span
+            padding: 0 2rem
+        i
+            box-shadow: 1px 1px 10px #00000073
+            display: flex
+            justify-content: center
+            align-items: center
+            padding: .5rem 1rem
+        &:last-of-type
+            i
+                box-shadow: -1px -1px 10px #00000073
+
+                
