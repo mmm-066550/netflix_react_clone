@@ -3,7 +3,7 @@ import React from "react";
 // import Swiper core and required modules
 import { Navigation, Pagination, Autoplay, Scrollbar } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Movie_Serie_View from "./Movie_Serie_View";
+import MovieSerieView from "./MovieSerieView";
 
 // Import Swiper styles
 import "swiper/css";
@@ -16,7 +16,7 @@ export default function CastSlider({ cast }) {
     return cast?.map((person) => {
       return (
         <SwiperSlide className="mb-4" key={person.id}>
-          <Movie_Serie_View work={person}></Movie_Serie_View>
+          <MovieSerieView work={person}></MovieSerieView>
         </SwiperSlide>
       );
     });

@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import "../styles/hero-slider.sass";
 import PageHeroSlide from "./PageHeroSlide";
 
-export default (props) => {
+export default function PageHeroSlider(props) {
   const renderList = () => {
     return props.results.map((el) => {
       return (
@@ -38,4 +38,4 @@ export default (props) => {
       {renderList()}
     </Swiper>
   );
-};
+}

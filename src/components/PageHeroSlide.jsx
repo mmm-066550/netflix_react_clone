@@ -1,6 +1,5 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Movie_Serie_View from "./Movie_Serie_View";
+import MovieSerieView from "./MovieSerieView";
 import { Link } from "react-router-dom";
 
 import netflix_icon from "../assets/images/icon.png";
@@ -51,7 +50,7 @@ export default function PageHeroSlide({ data }) {
               </div>
             </div>
             <div className="offset-2 col-2 p-0 position-relative">
-              <Movie_Serie_View work={data} />
+              <MovieSerieView work={data} />
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../styles/movies-page.sass";
-import Movie_Serie_View from "./Movie_Serie_View";
+import MovieSerieView from "./MovieSerieView";
 import WorksClassificationBtns from "./WorksClassificationBtns";
 
 export default function ResultsContainer(props) {
@@ -12,7 +12,7 @@ export default function ResultsContainer(props) {
     return props.results.map((el) => {
       return (
         <div className="result-view col-2_5" key={el.id}>
-          <Movie_Serie_View work={el} />
+          <MovieSerieView work={el} />
         </div>
       );
     });

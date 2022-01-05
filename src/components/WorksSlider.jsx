@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef } from "react";
 import { connect } from "react-redux";
-import Movie_Serie_View from "./Movie_Serie_View";
+import MovieSerieView from "./MovieSerieView";
 // import Swiper core and required modules
 import { Navigation, Scrollbar, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -41,7 +41,7 @@ export default connect(null, {
     return props.works.map((el) => {
       return (
         <SwiperSlide key={el.id || el.title}>
-          <Movie_Serie_View work={el} />
+          <MovieSerieView work={el} />
         </SwiperSlide>
       );
     });

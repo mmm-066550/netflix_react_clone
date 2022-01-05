@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import WorkScore from "./WorkScore";
-import "../styles/MovieSerieView.sass";
+import "../styles/movie_serie_view.sass";
 
 export default function MovieSerieView({ work }) {
   return (
