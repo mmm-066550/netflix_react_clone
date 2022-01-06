@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import thunk from "redux-thunk";
 import { createStore, compose, applyMiddleware } from "redux";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import { Provider } from "react-redux";
 import reducers from "./redux/reducers";
 

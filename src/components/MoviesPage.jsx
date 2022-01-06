@@ -61,7 +61,10 @@ export default connect(mapStateToProps, {
       <div className="page-main">
         <div className="container">
           <div className="row">
-            <SideBarFilter></SideBarFilter>
+            <SideBarFilter
+              label={`${category} movies`}
+              list={props.movies}
+            ></SideBarFilter>
             <ResultsContainer
               pathname="movies"
               categories={["popular", "now playing", "top rated", "upcoming"]}

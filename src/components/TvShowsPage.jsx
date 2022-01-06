@@ -51,7 +51,7 @@ export default connect(mapStateToProps, {
       document.title = "NETFLIX | Top Rated Shows";
       props.getTopTv(page);
     }
-  }, [location, category, page, props]);
+  }, [location, category, page]);
   const results = props.series.slice(0, 3);
   return (
     <>
@@ -61,7 +61,10 @@ export default connect(mapStateToProps, {
       <div className="page-main">
         <div className="container">
           <div className="row">
-            <SideBarFilter></SideBarFilter>
+            <SideBarFilter
+              label={`${category} series`}
+              list={props.series}
+            ></SideBarFilter>
             <ResultsContainer
               pathname="series"
               categories={["popular", "airing today", "top rated", "on tv"]}

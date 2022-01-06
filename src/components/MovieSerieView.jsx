@@ -11,7 +11,7 @@ export default function MovieSerieView({ work }) {
       className="MovieSerieView mt-2"
     >
       <WorkScore
-        score={work.vote_average * 10 || Math.floor(work.popularity)}
+        score={work.gender ? work.popularity : work.vote_average * 10}
       />
       <span className="ribbon-container">
         <div className="ribbon">{work.original_language}</div>

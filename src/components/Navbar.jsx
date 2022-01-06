@@ -84,9 +84,9 @@ export default connect(mapStateToProps, { changeIsLoggedIn })(
               </ul>
             </div>
             <div className="col navbar-right-area">
-              <button className="search-btn navbar-btn">
+              <Link to={"/search"} className="search-btn navbar-btn">
                 <i className="fal fa-search"></i>
-              </button>
+              </Link>
               <button className="notifications-btn navbar-btn ms-4">
                 <i className="fal fa-bell"></i>
                 <span className="active"></span>
@@ -103,12 +103,13 @@ export default connect(mapStateToProps, { changeIsLoggedIn })(
                   <Link className="ms-4 navbar-btn user-avatar" to="/">
                     <img className="avatar-img" src={avatar} alt={"avatar"} />
                   </Link>
-                  <button
+                  <Link
+                    to={"/logout"}
                     className="ms-4 navbar-btn"
                     onClick={props.changeIsLoggedIn}
                   >
                     <i className="fal fa-power-off"></i>
-                  </button>
+                  </Link>
                 </>
               )}
             </div>

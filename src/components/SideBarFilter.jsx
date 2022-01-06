@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
+import WorksFilter from "./WorksFilter";
 import "../styles/movies-page.sass";
+import "../styles/works-filter.sass";
 
-export default function SideBarFilter(props) {
-  useEffect(() => {
-    document.title = "Netflix | Popular Movies";
-  }, []);
+export default function SideBarFilter({ list, label }) {
   return (
     <div className="col-3 left-sidebar">
-      <div style={{ background: "teal" }}>....</div>
+      <WorksFilter label={label} list={list} />
     </div>
   );
 }

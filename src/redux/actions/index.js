@@ -11,6 +11,12 @@ import getMovieById from "./getMovieById";
 import getSerieById from "./getSerieById";
 import getUpcomingMovies from "./getUpcomingMovies";
 import getOnTheAirTv from "./getOnTheAirTv";
+import sortTitleA_Z from "./sortTitleA_Z";
+import sortTitleZ_A from "./sortTitleZ_A";
+import sortDateAscending from "./sortDateAscending";
+import sortDateDescending from "./sortDateDescending";
+import sortRateAscending from "./sortRateAscending";
+import sortRateDescending from "./sortRateDescending";
 export {
   changeIsLoggedIn,
   getTMDBTrendings,
@@ -25,4 +31,10 @@ export {
   getMovieById,
   getUpcomingMovies,
   getOnTheAirTv,
+  sortTitleA_Z,
+  sortTitleZ_A,
+  sortDateAscending,
+  sortDateDescending,
+  sortRateAscending,
+  sortRateDescending,
 };
