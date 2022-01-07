@@ -9,6 +9,7 @@ import Movies from "./Movies";
 import Series from "./Series";
 import Movie from "./Movie";
 import Serie from "./Serie";
+import FilteredList from "./Filter";
 
 export default combineReducers({
   isUserLoggedIn: User_Login,
@@ -20,4 +21,5 @@ export default combineReducers({
   series: Series,
   movie: Movie,
   serie: Serie,
+  filteredList: FilteredList,
 });

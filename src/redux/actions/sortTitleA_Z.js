@@ -1,4 +1,4 @@
-const sortTitleA_Z = (list, type) => {
+const sortTitleA_Z = (list) => {
   const titles = list.map((el) => el.title || el.name).sort();
   return {
     type: "SORT_TITLE_A_Z",
