@@ -1,4 +1,10 @@
 @import './variables'
+.col-9.results-container .container
+    min-height: 850px
+    position: relative
+    display: flex
+    flex-direction: column
+    // justify-content: space-between
 .works-filter
     label
         text-transform: capitalize
@@ -43,3 +49,16 @@
                 display: none
             &::before
                 display: none
+    .genres
+        .genre-btn
+            border: 1px solid #00000075
+            border-radius: 100px
+            padding: 0.2rem 1rem
+            margin: .25rem 0
+            margin-right: 0.5rem
+            font-size: 13px
+
+        .active
+            border: 1px solid $netflix-red
+            background: $netflix-red
+            color: $netflix-white

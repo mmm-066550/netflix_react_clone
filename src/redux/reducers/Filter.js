@@ -21,9 +21,12 @@ const FilteredList = (List = [], action) => {
     return [...action.payload];
   }
   if (action.type === "FILTER_BY_LANGUAGE") {
-    return action.payload;
+    return [...action.payload];
   }
-  return [];
+  if (action.type === "FILTER_BY_GENRE") {
+    return [...action.payload];
+  }
+  return List;
 };
 
 export default FilteredList;

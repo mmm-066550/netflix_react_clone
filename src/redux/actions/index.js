@@ -19,6 +19,7 @@ import sortRateAscending from "./sortRateAscending";
 import sortRateDescending from "./sortRateDescending";
 import filterByLanguage from "./filterByLanguage";
 import initFilteredList from "./initFilteredList";
+import filterByGenre from "./filterByGenre";
 export {
   changeIsLoggedIn,
   getTMDBTrendings,
@@ -41,4 +42,5 @@ export {
   sortRateDescending,
   filterByLanguage,
   initFilteredList,
+  filterByGenre,
 };

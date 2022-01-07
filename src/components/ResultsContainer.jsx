@@ -9,7 +9,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(function ResultsContainer(props) {
-  console.log(props.filteredList);
   useEffect(() => {
     document.title = "Netflix | Popular Movies";
   }, []);
