@@ -34,7 +34,7 @@ export default connect(mapStateToProps, { getTmdbTrendings })(
       <div className="home-trendings-slider-container">
         <div className="container">
           <div className="row">
-            <div className="offset-1 col-10">
+            <div className="offset-lg-1 col-12 col-lg-10">
               <p className="slider-title">
                 <i className="fal fa-poll-h me-2"></i>
                 trending now
@@ -43,7 +43,18 @@ export default connect(mapStateToProps, { getTmdbTrendings })(
                 className="home-trendings-slider"
                 modules={[Navigation, Autoplay, Scrollbar]}
                 spaceBetween={25}
-                slidesPerView={4}
+                slidesPerView={1}
+                breakpoints={{
+                  768: {
+                    slidesPerView: 2,
+                  },
+                  992: {
+                    slidesPerView: 3,
+                  },
+                  1200: {
+                    slidesPerView: 4,
+                  },
+                }}
                 scrollbar={{ draggable: true }}
                 // loop={true}
                 autoplay={{

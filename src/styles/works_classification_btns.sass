@@ -4,15 +4,17 @@
     flex-direction: row
     align-items: center 
     justify-content: flex-start
-    padding-bottom: 2rem
+    margin-bottom: 2rem
+    overflow: scroll
     a
         color: $netflix-white !important
         text-transform: capitalize
         border: 2px solid $netflix-white
         border-radius: 1000px
         padding: 0.3rem 1.25rem
-        margin-right: 1.5rem
+        margin-right: 1rem
         transition: all .2s
+        white-space: nowrap
     
         &:hover
             color: $netflix-white
@@ -24,3 +26,7 @@
         border: 2px solid $netflix-red
 
 
+@media screen and ( max-width: 991px  )
+    .class-btns-group
+        padding-bottom: 2rem
+    

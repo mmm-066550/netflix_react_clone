@@ -3,20 +3,25 @@ import MovieSerieView from "./MovieSerieView";
 import { Link } from "react-router-dom";
 
 import netflix_icon from "../assets/images/icon.png";
+import bg from "../assets/images/work-bg.jpg";
 
 export default function PageHeroSlide({ data }) {
   return (
     <>
       <div className="fluid-overlay"></div>
       <img
-        src={`https://www.themoviedb.org/t/p/w1920_and_h1080_multi_faces${data.backdrop_path}`}
+        src={
+          data?.backdrop_path
+            ? `https://www.themoviedb.org/t/p/w1920_and_h1080_multi_faces${data.backdrop_path}`
+            : bg
+        }
         alt="slider-bg"
         className="slide-bg-img"
       />
       <div className="slide-content">
         <div className="container">
           <div className="row align-items-center">
-            <div className="offset-2 col-4">
+            <div className="offset-lg-1 col-lg-5 col-xl-6 col-12 pt-4">
               <div className="work-category">
                 <img width={25} height={20} src={netflix_icon} alt="netflix" />
                 <span className="ms-2">{data.title ? "MOVIES" : "SERIES"}</span>
@@ -49,7 +54,7 @@ export default function PageHeroSlide({ data }) {
                 </Link>
               </div>
             </div>
-            <div className="offset-2 col-2 p-0 position-relative">
+            <div className="offset-lg-2 d-none d-lg-block col-xl-2 col-lg-3 p-0 position-relative">
               <MovieSerieView work={data} />
             </div>
           </div>

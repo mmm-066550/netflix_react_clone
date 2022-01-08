@@ -17,7 +17,7 @@ export default function MovieOnSliderView({ trend }) {
       <div className="work-category">
         <img width={25} height={20} src={netflix_icon} alt="netflix" />
         <span className="ms-1">
-          {trend.media_type !== "movies" ? "series" : trend.media_type}
+          {trend.media_type !== "movie" ? "series" : "movies"}
         </span>
       </div>
       <div className="work-title">{trend.title || trend.name}</div>

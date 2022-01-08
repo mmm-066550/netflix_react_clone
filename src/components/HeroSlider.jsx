@@ -39,7 +39,7 @@ export default (props) => {
         <div className="slide-content">
           <div className="container">
             <div className="row">
-              <div className="offset-1 col-4">
+              <div className="offset-lg-1 col-12 col-md-8 col-lg-6 col-xl-5">
                 <div className="work-category">
                   <img
                     width={25}
@@ -51,13 +51,13 @@ export default (props) => {
                 </div>
                 <div className="work-banner">
                   <img
-                    className="py-4"
+                    className="py-4 la-casa-banner"
                     width={400}
                     src={la_casa_banner}
                     alt="la_casa_banner"
                   />
                 </div>
-                <div className="work-info d-flex">
+                <div className="work-info">
                   <span className="work-info-tag">2017</span>
                   <span className="work-info-tag age-class">16</span>
                   <span className="work-info-tag">3 seasons</span>
@@ -99,7 +99,7 @@ export default (props) => {
         <div className="slide-content">
           <div className="container">
             <div className="row">
-              <div className="offset-1 col-4">
+              <div className="offset-lg-1 col-12 col-md-8 col-lg-6 col-xl-5">
                 <div className="work-category">
                   <img
                     width={25}
@@ -109,14 +109,15 @@ export default (props) => {
                   />
                   <span className="ms-2">SERIES</span>
                 </div>
-                <div className="work-banner">
+                <div className="work-banner ">
                   <img
+                    className="squid_game_banner"
                     width={270}
                     src={squid_game_banner}
                     alt="squid_game_banner"
                   />
                 </div>
-                <div className="work-info d-flex">
+                <div className="work-info">
                   <span className="work-info-tag">2021</span>
                   <span className="work-info-tag age-class">+18</span>
                   <span className="work-info-tag ">Action</span>
@@ -152,7 +153,7 @@ export default (props) => {
         <div className="slide-content">
           <div className="container">
             <div className="row">
-              <div className="offset-1 col-5">
+              <div className="offset-lg-1 col-12 col-md-8 col-lg-6 col-xl-5">
                 <div className="work-category">
                   <img
                     width={25}
@@ -170,11 +171,10 @@ export default (props) => {
                     alt="spider_man_banner"
                   />
                 </div>
-                <div className="work-info d-flex">
+                <div className="work-info">
                   <span className="work-info-tag">2021</span>
                   <span className="work-info-tag age-class">PG-13</span>
                   <span className="work-info-tag">Action</span>
-                  <span className="work-info-tag">Adventure</span>
                   <span className="work-info-tag">Fiction</span>
                   <span className="work-info-tag">2h 28m</span>
                 </div>

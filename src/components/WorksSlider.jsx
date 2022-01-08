@@ -66,32 +66,49 @@ export default connect(null, {
     <div className="container">
       <div className="row">
         <div className="col">
-          <div className="slider-actions d-flex pt-5">
-            <div>
+          <div className="slider-actions pt-5">
+            <div className="d-flex justify-content-between w-100">
               <span className="slider-title">
                 <i className={`fal fa-${props.icon} me-2`}></i>
                 {props.title}
               </span>
-              <span ref={off} className="actions-btns-group">
-                <span ref={ref} className="background">
-                  {props.btnsGroup[0]}
-                </span>
-                <div>{renderBtns()}</div>
+
+              <div className={`slider-navigation`}>
+                <div
+                  className={`${props.navEl} swiper-button-prev-unique me-3`}
+                ></div>
+                <div
+                  className={`${props.navEl} swiper-button-next-unique`}
+                ></div>
+              </div>
+            </div>
+            <span ref={off} className="actions-btns-group">
+              <span ref={ref} className="background">
+                {props.btnsGroup[0]}
               </span>
-            </div>
-            <div className={`slider-navigation`}>
-              <div
-                className={`${props.navEl} swiper-button-prev-unique me-3`}
-              ></div>
-              <div className={`${props.navEl} swiper-button-next-unique`}></div>
-            </div>
+              <div>{renderBtns()}</div>
+            </span>
           </div>
           <div className="works-slider-container">
             <Swiper
               className="works-slider px-1"
               modules={[Navigation, Autoplay, Scrollbar]}
               spaceBetween={20}
-              slidesPerView={7}
+              slidesPerView={2}
+              breakpoints={{
+                520: {
+                  slidesPerView: 3,
+                },
+                640: {
+                  slidesPerView: 4,
+                },
+                991: {
+                  slidesPerView: 5,
+                },
+                1200: {
+                  slidesPerView: 7,
+                },
+              }}
               loop={true}
               navigation={{
                 nextEl: `.${props.navEl}.swiper-button-next-unique`,

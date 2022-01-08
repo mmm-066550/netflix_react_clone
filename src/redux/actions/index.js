@@ -10,6 +10,7 @@ import getTopTv from "./getTopTv";
 import getMovieById from "./getMovieById";
 import getSerieById from "./getSerieById";
 import getUpcomingMovies from "./getUpcomingMovies";
+import getSerieEpisodes from "./getSerieEpisodes";
 import getOnTheAirTv from "./getOnTheAirTv";
 import sortTitleA_Z from "./sortTitleA_Z";
 import sortTitleZ_A from "./sortTitleZ_A";
@@ -43,4 +44,5 @@ export {
   filterByLanguage,
   initFilteredList,
   filterByGenre,
+  getSerieEpisodes,
 };

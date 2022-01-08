@@ -28,8 +28,19 @@ export default function CastSlider({ cast }) {
       <Swiper
         modules={[Navigation, Pagination, Autoplay, Scrollbar]}
         className="hero-slider"
-        spaceBetween={30}
-        slidesPerView={5}
+        spaceBetween={20}
+        slidesPerView={2}
+        breakpoints={{
+          520: {
+            slidesPerView: 3,
+          },
+          767: {
+            slidesPerView: 4,
+          },
+          1200: {
+            slidesPerView: 5,
+          },
+        }}
         scrollbar={{ draggable: true }}
         autoplay={{
           delay: 50000,

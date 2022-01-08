@@ -1,15 +1,10 @@
 @import './variables'
 
 .pagination-container
-    position: absolute
-    bottom: 0
-    left: 0
-    right: 0
-    width: 100%
     display: flex
     align-items: center
     justify-content: center
-    margin: -5rem 0
+    margin-bottom: 2rem
     a
         color: $netflix-white !important
         border-radius: 1000px
@@ -36,3 +31,16 @@
                 box-shadow: -1px -1px 10px #00000073
 
                 
+@media screen and ( max-width: 500px )
+
+
+    .pagination-container
+        a
+            display: flex
+            align-items: center
+            justify-content: space-between
+            margin: .5rem
+            span
+                padding: 0 1.3rem !important
+                font-size: 10px
+    

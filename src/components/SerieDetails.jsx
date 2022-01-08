@@ -9,6 +9,7 @@ import SeasonItem from "./SeasonItem";
 import { Link } from "react-router-dom";
 import work_bg from "../assets/images/work-bg.jpg";
 import ReviewItem from "./ReviewItem";
+import SeriePageHero from "./SeriePageHero";
 
 const mapStateToProps = (state) => {
   return state;
@@ -26,9 +27,11 @@ export default connect(mapStateToProps, { getSerieById })(
 
     const renderSeasons = () => {
       return serie?.seasons?.map((season) => {
-        return (
-          <SeasonItem key={season.name} season={season} serieID={serie?.id} />
-        );
+        if (season.season_number > 0) {
+          return (
+            <SeasonItem key={season.name} season={season} serieID={serie?.id} />
+          );
+        }
       });
     };
     if (serie) {
@@ -37,98 +40,11 @@ export default connect(mapStateToProps, { getSerieById })(
       }
       return (
         <div className="movie-details-page">
-          <div className="movie-page-hero">
-            <div className="movie-backdrop">
-              <img
-                className="movie-backdrop-img"
-                src={
-                  serie.backdrop_path
-                    ? `https://www.themoviedb.org/t/p/w1920_and_h1080_multi_faces${serie?.backdrop_path}`
-                    : work_bg
-                }
-                alt="backdrop-img"
-              />
-            </div>
-            <div className="fluid-overlay"></div>
-            <div className="movie-hero-content">
-              <div className="container py-5">
-                <div className="row align-items-center">
-                  <div className="offset-1 col-3">
-                    <div className="movie-poster">
-                      <img
-                        src={
-                          serie?.poster_path
-                            ? `https://www.themoviedb.org/t/p/w440_and_h660_face${serie?.poster_path}`
-                            : `https://via.placeholder.com/440X660/FF2530/fff.png?text=NOT_AVAILABLE`
-                        }
-                        alt="movie-poster"
-                        className="movie-poster-img"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-7">
-                    <div className="movie-information">
-                      <h1 className="movie-title">
-                        {serie.name}{" "}
-                        <span
-                          className="movie-release-date
-                        "
-                        >
-                          {`(${serie.first_air_date?.split("-")[0]})`}
-                        </span>
-                      </h1>
-                      <div className="work-info d-flex">
-                        <span className="work-info-tag">
-                          {serie.first_air_date}
-                        </span>
-                        <span className="work-info-tag age-class">{`${
-                          serie.number_of_seasons
-                        } ${
-                          serie.number_of_seasons === 1 ? "season" : "seasons"
-                        }`}</span>
-                        {serie.genres?.map((el) => {
-                          return (
-                            <span key={el.id} className="work-info-tag">
-                              {el.name}
-                            </span>
-                          );
-                        })}
-                      </div>
-                      <div className="user-actions py-4">
-                        <WorkScore score={serie?.vote_average * 10} />
-                      </div>
-                      <span className="tagline">{serie.tagline}</span>
-                      <div className="work-description  py-3">
-                        {serie.overview}
-                      </div>
-                      <div className="work-actions-btns">
-                        <Link
-                          to={`/watch/serie/${serie?.id}/season/1/epsoide/1`}
-                          className="btn me-3"
-                        >
-                          <i className="fal fa-play me-3"></i>
-                          play
-                        </Link>
-                        {serie?.homepage ? (
-                          <a
-                            href={serie?.homepage}
-                            target="_blank"
-                            className="btn me-3 info-link-btn"
-                          >
-                            Visit Website
-                          </a>
-                        ) : null}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <SeriePageHero serie={serie} btns={true} />
           <div className="work-details-area pt-5">
             <div className="container mb-5">
               <div className="row">
-                <div className="col-9">
+                <div className="col-12 col-lg-9">
                   <div className="work-main-data">
                     <div className="movie-trailer">
                       <h5 className="mb-4">Movie Trailer</h5>
@@ -149,7 +65,7 @@ export default connect(mapStateToProps, { getSerieById })(
                     />
                   </div>
                 </div>
-                <div className="col-3 py-5">
+                <div className="col-12 col-lg-3 pt-5">
                   <div className="work-facts">
                     <div className="work-social-links mb-4 d-flex">
                       <a
@@ -286,13 +202,13 @@ export default connect(mapStateToProps, { getSerieById })(
             <div className="serie-seasons-area py-5">
               <div className="container">
                 <div className="row">
-                  <div className="col-8">
+                  <div className="col-12 col-lg-8">
                     <h5 className="mb-4">Tv Show Seasons</h5>
                     <div className="container p-0">
                       <div className="row">{renderSeasons()}</div>
                     </div>
                   </div>
-                  <div className="col-4">
+                  <div className="col-12 col-lg-4">
                     {(() => {
                       return (
                         <div className="work-info-item ">
@@ -304,8 +220,8 @@ export default connect(mapStateToProps, { getSerieById })(
                               serie.reviews.results.map((rev) => {
                                 return (
                                   <ReviewItem
-                                    avatarCol={2}
-                                    body={10}
+                                    avatarCol={3}
+                                    body={9}
                                     key={rev.id}
                                     review={rev}
                                     invert={true}

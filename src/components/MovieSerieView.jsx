@@ -12,7 +12,9 @@ export default function MovieSerieView({ work }) {
     >
       <WorkScore
         score={
-          work.gender ? Math.floor(work.popularity) : work.vote_average * 10
+          work.gender
+            ? Math.floor(work.popularity)
+            : work.vote_average * 10 || 0
         }
       />
       <span className="ribbon-container">
@@ -52,7 +54,7 @@ export default function MovieSerieView({ work }) {
             work.gender
               ? `/person/${work.id}`
               : `/watch/${work.title ? "movie" : "serie"}/${work.id}/${
-                  work.name ? "season/1/eposide/1" : ""
+                  work.name ? "season/1/episode/1" : ""
                 }`
           }
         >

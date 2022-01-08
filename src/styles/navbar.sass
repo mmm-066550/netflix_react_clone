@@ -57,26 +57,64 @@ nav
             border-radius: 50%
             background: $netflix-red
             outline: 3px solid $_bg-color
-nav.nav-top-fixed
+
+
+.mob-navbar
+    padding: 2rem 0
+    color: $_bg-color
     position: fixed
-nav.invert
+    width: 100%
+    height: 50px
+    bottom: 0
+    left: 0
+    z-index: 1000
     background: $netflix-white
-    transition: background .3s
-    padding: 0
-    color: $netflix-white
+    display: flex
+    align-items: center
+    justify-content: space-around
     box-shadow: 1px 1px 10px #00000021
-    .navbar-left-area
-        .navbar-short-links
-            .nav-link
+
+    .navbar-btn
+        font-size: 20px
+        position: relative
+        color: $_bg-color
+    .user-avatar
+        width: 40px
+        height: 40px
+        display: block
+        background: red
+        border-radius: .35rem
+        overflow: hidden
+        .avatar-img
+            width: 100%
+            height: 100%
+            object-fit: cover
+
+
+
+@media screen and ( min-width : (991px) )
+    nav.nav-top-fixed
+        position: fixed
+    nav.invert
+        background: $netflix-white
+        transition: background .3s
+        padding: 0
+        color: $netflix-white
+        box-shadow: 1px 1px 10px #00000021
+        .navbar-left-area
+            .navbar-short-links
+                .nav-link
+                    color: $_bg-color
+                    text-transform: capitalize
+                    padding: 1.25rem 1rem
+                .nav-link.active
+                        border-bottom: 4px solid $netflix-red 
+        .navbar-right-area
+            .navbar-btn
                 color: $_bg-color
-                text-transform: capitalize
-                padding: 1.25rem 1rem
-            .nav-link.active
-                    border-bottom: 4px solid $netflix-red 
-    .navbar-right-area
-        .navbar-btn
-            color: $_bg-color
-        .user-avatar
-        .active
-            background: $netflix-red
-            outline: 3px solid $netflix-white
+                padding: 0
+            .user-avatar
+            .active
+                background: $netflix-red
+                outline: 3px solid $netflix-white
+    

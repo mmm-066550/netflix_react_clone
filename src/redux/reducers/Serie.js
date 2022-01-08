@@ -1,7 +1,7 @@
 const Serie = (serie = null, action) => {
   if (action.type === "GET_SERIE") {
-    return { ...serie, ...action.payload };
+    return { ...action.payload };
   }
-  return null;
+  return serie;
 };
 export default Serie;

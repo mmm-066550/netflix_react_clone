@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function VideoPlayerArea({ id }) {
+export default function VideoPlayerArea({ season, ep, id }) {
   return (
     <div>
       <div className="container py-5">
@@ -8,7 +8,11 @@ export default function VideoPlayerArea({ id }) {
           <div className="col-8">
             <iframe
               style={{ width: "100%", minHeight: "550px" }}
-              src={`https://www.2embed.ru/embed/tmdb/movie?id=${id}`}
+              src={
+                season && ep
+                  ? `https://www.2embed.ru/embed/tmdb/tv?id=${id}&s=${season}&e=${ep}`
+                  : `https://www.2embed.ru/embed/tmdb/movie?id=${id}`
+              }
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

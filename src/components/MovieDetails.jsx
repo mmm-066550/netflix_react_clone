@@ -32,7 +32,7 @@ export default connect(mapStateToProps, { getMovieById })(
             <div className="work-details-area">
               <div className="container pt-5">
                 <div className="row">
-                  <div className="col-9">
+                  <div className="col-12 col-lg-9">
                     <div className="work-main-data">
                       {(() => {
                         if (movie?.videos?.results[0]?.key) {
@@ -60,7 +60,7 @@ export default connect(mapStateToProps, { getMovieById })(
                       />
                     </div>
                   </div>
-                  <div className="col-3 pt-5">
+                  <div className="col-12 col-lg-3 pt-5">
                     <div className="work-facts">
                       <div className="work-social-links mb-4 d-flex">
                         <a

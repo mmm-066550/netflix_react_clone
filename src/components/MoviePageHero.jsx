@@ -23,7 +23,7 @@ export default function MoviePageHero({ movie, btns }) {
         <div className="movie-hero-content">
           <div className="container py-5">
             <div className="row align-items-center">
-              <div className="offset-1 col-3">
+              <div className="offset-1 col-3 d-none d-lg-block">
                 <div className="movie-poster">
                   <img
                     src={
@@ -36,9 +36,9 @@ export default function MoviePageHero({ movie, btns }) {
                   />
                 </div>
               </div>
-              <div className="col-7">
+              <div className="col-12 col-lg-7">
                 <div className="movie-information">
-                  <h1 className="movie-title">
+                  <h1 className="pb-3 movie-title">
                     {movie.title || "N/A"}
                     <span
                       className="movie-release-date

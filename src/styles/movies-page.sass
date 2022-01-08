@@ -21,8 +21,8 @@
         .swiper-button-next
             top: 50%
 .page-main
-    padding: 4rem 0
-    padding-bottom: 7rem
+    padding: 3rem 0
+    padding-bottom: 0
     .left-sidebar
     .results-container
         .result-view
@@ -32,6 +32,16 @@
             .work-rating
             .ribbon-container
                 top: -6px
-        .col-2_5
-            width: 20%
-            
+
+@media screen and ( min-width: 1200px )
+    .col-xl-2_5
+        width: 20% !important
+
+@media screen and ( max-width: 991px )
+    .page-hero-slider
+        .swiper
+            .swiper-slide
+                min-height: 600px !important
+        .slide-content
+            padding-top: 2rem
+    

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function SeasonItem({ season, serieID }) {
   return (
-    <div className="col-6">
+    <div className="col-12 col-lg-6">
       <div className="season-container">
         <div className="row">
           <div className="col-5 season-poster">
@@ -28,7 +28,7 @@ export default function SeasonItem({ season, serieID }) {
             </Link>
             <div className="season-info">{`${
               season?.air_date?.split("-")[0]
-            } | ${season?.episode_count} Eposides`}</div>
+            } | ${season?.episode_count} Epoisodes`}</div>
             <p className="season-overview">{season?.overview}</p>
           </div>
         </div>

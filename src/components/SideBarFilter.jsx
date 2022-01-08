@@ -5,7 +5,7 @@ import "../styles/works-filter.sass";
 
 export default function SideBarFilter({ list, label }) {
   return (
-    <div className="col-3 left-sidebar">
+    <div className="col-12 col-md-3 left-sidebar">
       <WorksFilter label={label} list={list} />
     </div>
   );
