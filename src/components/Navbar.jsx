@@ -1,9 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+/// MODULES
 import { connect } from "react-redux";
 import { changeIsLoggedIn } from "../redux/actions";
 import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+
+/// IMAGES
 import logo from "../assets/images/logo.svg";
 import avatar from "../assets/images/avatar.webp";
+
+/// STYLES
 import "../styles/navbar.sass";
 
 const mapStateToProps = (state) => {
@@ -11,17 +16,20 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { changeIsLoggedIn })(
-  function MainNavbar(props) {
+  function MainNavbar({ changeIsLoggedIn, isUserLoggedIn }) {
+    const location = useLocation();
+
     const nav = useRef();
     const home = useRef();
-    const location = useLocation();
+
     const [currentPage, setCurrentPage] = useState(null);
     const [navFixed, setNavFixed] = useState(false);
+    const [scrollY, setscrollY] = useState(0);
 
     const setActiveClass = () => {
       [...nav.current.children].map((el) => {
         el.children[0].classList.remove("active");
-        if (!currentPage) {
+        if (currentPage === "") {
           home.current.classList.add("active");
         }
         if (currentPage && el.children[0].innerHTML === currentPage) {
@@ -30,47 +38,50 @@ export default connect(mapStateToProps, { changeIsLoggedIn })(
       });
     };
 
+    document.addEventListener("scroll", () => {
+      setscrollY(window.scrollY);
+    });
     useEffect(() => {
       setCurrentPage(location.pathname.split("/")[1]);
+    }, [location]);
+    useEffect(() => {
       setActiveClass();
-    });
-
-    document.addEventListener("scroll", () => {
-      if (window.scrollY > 120) {
+    }, [currentPage]);
+    useEffect(() => {
+      if (scrollY > 120) {
         setNavFixed(true);
-      } else if (window.scrollY <= 120) {
+      } else if (scrollY <= 120) {
         setNavFixed(false);
       }
-    });
+    }, [scrollY]);
+
     return (
       <>
         <div className="mob-navbar d-lg-none">
-          <Link to={"/"} className="notifications-btn navbar-btn ">
+          <Link to={"/"} className="home-btn navbar-btn ">
             <i className="fal fa-home"></i>
           </Link>
           <Link to={"/search"} className="search-btn navbar-btn">
             <i className="fal fa-search"></i>
           </Link>
-
-          {!props.isUserLoggedIn ? (
+          {!isUserLoggedIn ? (
             <button
               className="login_signup-link navbar-btn "
-              onClick={props.changeIsLoggedIn}
+              onClick={changeIsLoggedIn}
             >
               <i className="fal fa-user"></i>
             </button>
           ) : (
             <>
-              <Link className=" navbar-btn user-avatar" to="/">
+              <Link className=" navbar-btn user-avatar" to="/account">
                 <img className="avatar-img" src={avatar} alt={"avatar"} />
               </Link>
-              <Link
-                to={"/logout"}
-                className=" navbar-btn"
-                onClick={props.changeIsLoggedIn}
-              >
-                <i className="fal fa-power-off"></i>
+              <Link to={"/favourites"} className="favourites-btn navbar-btn">
+                <i className="fal fa-heart"></i>
               </Link>
+              <button className=" navbar-btn" onClick={changeIsLoggedIn}>
+                <i className="fal fa-power-off"></i>
+              </button>
             </>
           )}
         </div>
@@ -116,17 +127,17 @@ export default connect(mapStateToProps, { changeIsLoggedIn })(
               </div>
               <div className="col navbar-right-area">
                 <div className="d-none d-lg-flex">
-                  <Link to={"/search"} className="search-btn navbar-btn">
+                  <Link
+                    to={"/search"}
+                    title="Search"
+                    className="search-btn navbar-btn"
+                  >
                     <i className="fal fa-search"></i>
                   </Link>
-                  <button className="notifications-btn navbar-btn ms-4">
-                    <i className="fal fa-bell"></i>
-                    <span className="active"></span>
-                  </button>
-                  {!props.isUserLoggedIn ? (
+                  {!isUserLoggedIn ? (
                     <button
                       className="login_signup-link ms-4"
-                      onClick={props.changeIsLoggedIn}
+                      onClick={changeIsLoggedIn}
                     >
                       login
                     </button>
@@ -137,15 +148,16 @@ export default connect(mapStateToProps, { changeIsLoggedIn })(
                           className="avatar-img"
                           src={avatar}
                           alt={"avatar"}
+                          title="Account"
                         />
                       </Link>
-                      <Link
-                        to={"/logout"}
+                      <button
+                        title="Logout"
                         className="ms-4 navbar-btn"
-                        onClick={props.changeIsLoggedIn}
+                        onClick={changeIsLoggedIn}
                       >
                         <i className="fal fa-power-off"></i>
-                      </Link>
+                      </button>
                     </>
                   )}
                 </div>

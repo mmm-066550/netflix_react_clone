@@ -6,7 +6,6 @@ nav
     width: 100%
     position: absolute
     padding: 2rem 0
-    color: $netflix-white
     .navbar-right-area,
     .navbar-left-area 
         display: flex
@@ -18,9 +17,10 @@ nav
                 color: $netflix-white
                 text-transform: capitalize
                 padding: .75rem 1rem
+                border-color: $netflix-red
             .nav-link.active
-                border-bottom: 4px solid $netflix-red 
-                background: linear-gradient(to top,#ffffff2d,#ffffff00)
+                border-bottom: 4px solid $netflix-red
+                background: linear-gradient(to top,#ffffff2d,#ffffff00) !important
     .navbar-right-area
         justify-content: flex-end
         .login_signup-link

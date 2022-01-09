@@ -54,7 +54,7 @@ export default connect(mapStateToProps, { getSerieById, getSerieEpisodes })(
               <div className="row">
                 {episodes?.sort().map((ep) => {
                   return (
-                    <div className="col-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <EpisodeItem
                         key={ep.id}
                         season={season?.season_number}

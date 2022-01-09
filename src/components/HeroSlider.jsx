@@ -1,23 +1,24 @@
-// import Swiper core and required modules
-import { Navigation, Pagination, Autoplay } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+/// MODULES
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper";
 
-// Import Swiper styles
+/// STYLES
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
 import "../styles/hero-slider.sass";
-import squid_game_bg from "../assets/images/hero-slider/squid-game-bg.webp";
-import la_casa_bg from "../assets/images/hero-slider/la-casa-bg.webp";
-import spider_man_bg from "../assets/images/hero-slider/spider-man.webp";
-import netflix_icon from "../assets/images/icon.png";
-import squid_game_banner from "../assets/images/hero-banners/squid-game-banner.webp";
-import la_casa_banner from "../assets/images/hero-banners/la-casa.webp";
-import spider_man_banner from "../assets/images/hero-banners/spider-man.webp";
 
-export default (props) => {
+/// IMAGES
+import netflix_icon from "../assets/images/icon.png";
+import la_casa_bg from "../assets/images/hero-slider/la-casa-bg.webp";
+import la_casa_banner from "../assets/images/hero-banners/la-casa.webp";
+import spider_man_bg from "../assets/images/hero-slider/spider-man.webp";
+import squid_game_bg from "../assets/images/hero-slider/squid-game-bg.webp";
+import spider_man_banner from "../assets/images/hero-banners/spider-man.webp";
+import squid_game_banner from "../assets/images/hero-banners/squid-game-banner.webp";
+
+export default function HeroSlider() {
   return (
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
@@ -26,9 +27,8 @@ export default (props) => {
       spaceBetween={0}
       slidesPerView={1}
       loop={true}
-      // pagination
       autoplay={{
-        delay: 50000,
+        delay: 10000,
         disableOnInteraction: false,
       }}
       speed={1000}
@@ -201,4 +201,4 @@ export default (props) => {
       </SwiperSlide>
     </Swiper>
   );
-};
+}

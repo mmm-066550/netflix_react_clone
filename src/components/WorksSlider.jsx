@@ -115,10 +115,10 @@ export default connect(null, {
                 prevEl: `.${props.navEl}.swiper-button-prev-unique`,
               }}
               autoplay={{
-                delay: 600000,
+                delay: 5000,
                 disableOnInteraction: false,
               }}
-              speed={1000}
+              speed={600}
             >
               {renderResults()}
             </Swiper>

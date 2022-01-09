@@ -30,6 +30,7 @@ export default connect(mapStateToProps, { getTmdbTrendings })(
         );
       });
     };
+
     return (
       <div className="home-trendings-slider-container">
         <div className="container">
@@ -39,32 +40,35 @@ export default connect(mapStateToProps, { getTmdbTrendings })(
                 <i className="fal fa-poll-h me-2"></i>
                 trending now
               </p>
-              <Swiper
-                className="home-trendings-slider"
-                modules={[Navigation, Autoplay, Scrollbar]}
-                spaceBetween={25}
-                slidesPerView={1}
-                breakpoints={{
-                  768: {
-                    slidesPerView: 2,
-                  },
-                  992: {
-                    slidesPerView: 3,
-                  },
-                  1200: {
-                    slidesPerView: 4,
-                  },
-                }}
-                scrollbar={{ draggable: true }}
-                // loop={true}
-                autoplay={{
-                  delay: 300000,
-                  disableOnInteraction: false,
-                }}
-                speed={1000}
-              >
-                {renderTrendingsList()}
-              </Swiper>
+              {trendings.length ? (
+                <Swiper
+                  className="home-trendings-slider"
+                  modules={[Navigation, Autoplay, Scrollbar]}
+                  spaceBetween={25}
+                  slidesPerView={1}
+                  breakpoints={{
+                    768: {
+                      slidesPerView: 2,
+                    },
+                    992: {
+                      slidesPerView: 3,
+                    },
+                    1200: {
+                      slidesPerView: 4,
+                    },
+                  }}
+                  scrollbar={{ draggable: true }}
+                  autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                  }}
+                  speed={500}
+                >
+                  {renderTrendingsList()}
+                </Swiper>
+              ) : (
+                "LOADING ..."
+              )}
             </div>
           </div>
         </div>

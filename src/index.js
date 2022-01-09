@@ -1,15 +1,18 @@
+/// MODULES
 import React from "react";
-import ReactDOM from "react-dom";
 import thunk from "redux-thunk";
-import { createStore, compose, applyMiddleware } from "redux";
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
+import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import reducers from "./redux/reducers";
+import { createStore, compose, applyMiddleware } from "redux";
 
-import App from "./components/App";
-
+/// STYLES
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import "./styles/normalize.sass";
+
+/// COMPONENTS
+import App from "./components/App";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
