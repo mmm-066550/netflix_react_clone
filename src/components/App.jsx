@@ -41,13 +41,15 @@ export default (function App() {
 
         <Route path="serie/:id/season/:number" element={<SerieSeasonPage />} />
 
-        {/* <Route path="watch/movie/:id" element={<WatchMovie />} /> */}
-        {/* <Route */}
-        {/* path="watch/serie/:id/season/:season/episode/:ep" */}
-        {/* element={<WatchSerie />} */}
-        {/* /> */}
+        <Route path="watch/movie/:id" element={<WatchMovie />} />
+        <Route
+          path="watch/serie/:id/season/:season/episode/:ep"
+          element={<WatchSerie />}
+        />
+
         {/* <Route path="search" element={<SearchPage />} /> */}
         {/* <Route path="search/:category" element={<SearchPage />} /> */}
+
         <Route path={"*"} element={<_404 />}></Route>
       </Routes>
       <MainMenu />
