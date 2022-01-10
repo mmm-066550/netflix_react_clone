@@ -3,7 +3,7 @@ import React from "react";
 import work_bg from "../assets/images/work-bg.jpg";
 import { Link } from "react-router-dom";
 
-export default function SeasonPageHero({ serie, season, btns }) {
+export default function SeasonPageHero({ serie, season }) {
   return (
     <div className="movie-details-page">
       <div className="movie-page-hero">

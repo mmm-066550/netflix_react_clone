@@ -20,7 +20,7 @@ export default connect(mapStateToProps, { getSerieById })(
   function SerieDetails({ serie, getSerieById }) {
     const { id } = useParams();
 
-    const [ready, setrReady] = useState("loading");
+    const [ready, setReady] = useState("loading");
 
     useEffect(() => {
       document.title = `NETFLIX | Loading ...`;
@@ -36,12 +36,12 @@ export default connect(mapStateToProps, { getSerieById })(
     useEffect(() => {
       if (serie.success === false) {
         document.title = `NETFLIX | 404 NOT FOUND`;
-        setrReady("404");
+        setReady("404");
       } else if (!serie.success && serie.name) {
         document.title = `NETFLIX | ${serie.name}`;
-        setrReady("ready");
+        setReady("ready");
       } else {
-        setrReady("loading");
+        setReady("loading");
       }
     }, [serie]);
 
@@ -61,7 +61,7 @@ export default connect(mapStateToProps, { getSerieById })(
       });
     };
     if (ready === "404") return <_404 />;
-    if (ready === "loading") return <LoadWrapper></LoadWrapper>;
+    if (ready === "loading") return <LoadWrapper ready={ready}></LoadWrapper>;
     if (ready === "ready")
       return (
         <div className="movie-details-page">

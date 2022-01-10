@@ -26,7 +26,7 @@ const FilteredList = (List = [], action) => {
   if (action.type === "FILTER_BY_GENRE") {
     return [...action.payload];
   }
-  return List;
+  return [];
 };
 
 export default FilteredList;

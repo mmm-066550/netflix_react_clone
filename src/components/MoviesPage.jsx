@@ -4,6 +4,8 @@ import SideBarFilter from "./SideBarFilter";
 import { useLocation } from "react-router-dom";
 import scrollToTop from "../helpers/scrollToTop";
 import Pagination from "./Pagination";
+import LoadWrapper from "./LoadWrapper";
+import _ from "lodash";
 import {
   getPopularMovies,
   getNowPlayingMovies,
@@ -25,7 +27,7 @@ export default connect(mapStateToProps, {
   getUpcomingMovies,
 })(function MoviesPage(props) {
   const location = useLocation();
-
+  const [ready, setReady] = useState("loading");
   const [page, setpage] = useState(1);
   const [category, setCategory] = useState("");
 
@@ -55,34 +57,41 @@ export default connect(mapStateToProps, {
         props.getUpcomingMovies(page);
         document.title = "NETFLIX | Upcoming Movies";
         break;
-      default:
-        document.title = "NETFLIX | 404 NOT FOUND";
-        break;
     }
   }, [category, page]);
 
-  return (
-    <>
-      <div className="page-hero-slider">
-        <PageHeroSlider results={props.movies.slice(0, 3)} />
-      </div>
-      <div className="page-main">
-        <div className="container">
-          <div className="row">
-            <SideBarFilter
-              label={`${category || "Popular"} movies`}
-              list={props.movies}
-            ></SideBarFilter>
-            <ResultsContainer
-              pathname="movies"
-              categories={["popular", "now playing", "top rated", "upcoming"]}
-              results={props.movies}
-            >
-              <Pagination page={page} />
-            </ResultsContainer>
+  useEffect(() => {
+    if (!_.isEmpty(props.movies)) {
+      setReady("ready");
+    }
+  }, [props.movies]);
+
+  if (ready === "loading") {
+    return <LoadWrapper ready={ready}></LoadWrapper>;
+  }
+  if (ready === "ready")
+    return (
+      <>
+        <div className="page-hero-slider">
+          <PageHeroSlider results={props.movies.slice(0, 3)} />
+        </div>
+        <div className="page-main">
+          <div className="container">
+            <div className="row">
+              <SideBarFilter
+                label={`${category || "Popular"} movies`}
+                list={props.movies}
+              ></SideBarFilter>
+              <ResultsContainer
+                pathname="movies"
+                categories={["popular", "now playing", "top rated", "upcoming"]}
+                results={props.movies}
+              >
+                <Pagination page={page} />
+              </ResultsContainer>
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
 });

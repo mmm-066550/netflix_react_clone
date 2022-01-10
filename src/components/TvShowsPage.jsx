@@ -4,6 +4,8 @@ import SideBarFilter from "./SideBarFilter";
 import Pagination from "./Pagination";
 import { useLocation } from "react-router-dom";
 import scrollToTop from "../helpers/scrollToTop";
+import LoadWrapper from "./LoadWrapper";
+import _ from "lodash";
 import {
   getPopularTv,
   getTopTv,
@@ -27,6 +29,7 @@ export default connect(mapStateToProps, {
 })(function TvShowsPage(props) {
   const location = useLocation();
   const [page, setpage] = useState(1);
+  const [ready, setReady] = useState("loading");
   const [category, setCategory] = useState("");
 
   useEffect(() => {
@@ -56,33 +59,41 @@ export default connect(mapStateToProps, {
         document.title = "NETFLIX | Top Rated Series";
         props.getTopTv(page);
         break;
-      default:
-        document.title = "NETFLIX | 404 NOT FOUND";
-        break;
     }
   }, [category, page]);
-  return (
-    <>
-      <div className="page-hero-slider">
-        <PageHeroSlider results={props.series.slice(0, 3)} />
-      </div>
-      <div className="page-main">
-        <div className="container">
-          <div className="row">
-            <SideBarFilter
-              label={`${category || "Popular"} series`}
-              list={props.series}
-            ></SideBarFilter>
-            <ResultsContainer
-              pathname="series"
-              categories={["popular", "airing today", "top rated", "on tv"]}
-              results={props.series}
-            >
-              <Pagination page={page} />
-            </ResultsContainer>
+
+  useEffect(() => {
+    if (!_.isEmpty(props.series)) {
+      setReady("ready");
+    }
+  }, [props.series]);
+
+  if (ready === "loading") {
+    return <LoadWrapper ready={ready}></LoadWrapper>;
+  }
+  if (ready === "ready")
+    return (
+      <>
+        <div className="page-hero-slider">
+          <PageHeroSlider results={props.series.slice(0, 3)} />
+        </div>
+        <div className="page-main">
+          <div className="container">
+            <div className="row">
+              <SideBarFilter
+                label={`${category || "Popular"} series`}
+                list={props.series}
+              ></SideBarFilter>
+              <ResultsContainer
+                pathname="series"
+                categories={["popular", "airing today", "top rated", "on tv"]}
+                results={props.series}
+              >
+                <Pagination page={page} />
+              </ResultsContainer>
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
 });

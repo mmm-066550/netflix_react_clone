@@ -20,18 +20,12 @@ export default connect(mapStateToProps, { getSerieById, getSerieEpisodes })(
     episodes,
   }) {
     const { id, number } = useParams();
-    const [ready, setrReady] = useState("loading");
+    const [ready, setReady] = useState("loading");
     const [season, setSeason] = useState(null);
 
     useEffect(() => {
       document.title = `NETFLIX | Loading ...`;
       scrollToTop();
-      return () => {
-        scrollToTop();
-      };
-    }, []);
-
-    useEffect(() => {
       if (_.isEmpty(serie)) {
         getSerieById(id);
       }
@@ -39,39 +33,60 @@ export default connect(mapStateToProps, { getSerieById, getSerieEpisodes })(
 
     useEffect(() => {
       if (serie.success === false) {
+        setReady("404");
         document.title = `NETFLIX | 404 NOT FOUND`;
-        setrReady("404");
       } else if (!serie.success && serie.name) {
-        setSeason(
-          serie?.seasons.filter((season) => {
-            return season?.season_number == number;
-          })[0]
-        );
-      } else {
-        setrReady("loading");
+        serie.seasons.forEach((el) => {
+          if (el.season_number === +number) {
+            return setSeason(el);
+          }
+        });
       }
     }, [serie]);
 
     useEffect(() => {
-      if (season) {
-        setrReady("ready");
-        document.title = `NETFLIX | ${serie.name} - season ${season?.season_number}`;
-        for (let ep = 1; ep <= season.episode_count; ep++) {
-          getSerieEpisodes(id, number, ep);
-        }
+      if (season === null) {
+        setReady("loading");
+        document.title = `NETFLIX | Loading ...`;
       }
       if (season === undefined) {
-        setrReady("404");
+        setReady("404");
         document.title = `NETFLIX | 404 NOT FOUND`;
+      }
+      if (season) {
+        document.title = `NETFLIX | ${serie.name} - season ${season?.season_number}`;
+        if (!season.episode_count) {
+          setReady("404");
+          document.title = `NETFLIX | 404 NOT FOUND`;
+        } else {
+          for (let ep = 1; ep <= season.episode_count; ep++) {
+            getSerieEpisodes(id, number, ep);
+          }
+        }
       }
     }, [season]);
 
-    if (ready === "404") return <_404 />;
-    if (ready === "loading") return <LoadWrapper></LoadWrapper>;
+    useEffect(() => {
+      if (episodes.length) {
+        setReady("ready");
+      }
+    }, [episodes]);
+
+    if (ready === "404") {
+      return <_404 />;
+    }
+    if (ready === "loading") {
+      return <LoadWrapper ready={ready}></LoadWrapper>;
+    }
     if (ready === "ready") {
       return (
         <>
-          <SeasonPageHero serie={serie} season={season} btns={false} />
+          <SeasonPageHero
+            serie={serie}
+            name={serie.name}
+            season={season}
+            btns={false}
+          />
           <div className="episodes-container bg-white text-dark">
             <div className="container py-5">
               <div className="row">
@@ -82,17 +97,21 @@ export default connect(mapStateToProps, { getSerieById, getSerieEpisodes })(
                 </div>
               </div>
               <div className="row">
-                {episodes?.sort().map((ep) => {
-                  return (
-                    <div key={ep.id} className="col-12 col-md-6 col-lg-4">
-                      <EpisodeItem
-                        season={season?.season_number}
-                        episode={ep}
-                        id={id}
-                      />
-                    </div>
-                  );
-                })}
+                {episodes
+                  ?.sort((curr, next) => {
+                    return curr.episode_number - next.episode_number;
+                  })
+                  .map((ep) => {
+                    return (
+                      <div key={ep.id} className="col-12 col-md-6 col-lg-4">
+                        <EpisodeItem
+                          season={season?.season_number}
+                          episode={ep}
+                          id={id}
+                        />
+                      </div>
+                    );
+                  })}
               </div>
             </div>
           </div>

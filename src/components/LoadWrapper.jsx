@@ -1,18 +1,15 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
-export default function LoadWrapper() {
-  return (
-    <div
-      className="load_wrapper d-flex justify-content-center align-items-center"
-      style={{ height: "650px", overflow: "hidden !important" }}
-    >
-      <div
-        className="spinner-grow"
-        style={{ width: "10rem", height: "10rem" }}
-        role="status"
-      >
+import "../styles/load-wrapper.sass";
+
+export default function LoadWrapper({ ready }) {
+  return ReactDOM.createPortal(
+    <div className={`load-wrapper ${ready === "ready" ? "d-none" : ""}`}>
+      <div className="spinner-grow" role="status">
         <span className="visually-hidden">Loading...</span>
       </div>
-    </div>
+    </div>,
+    document.getElementById("wrapper")
   );
 }

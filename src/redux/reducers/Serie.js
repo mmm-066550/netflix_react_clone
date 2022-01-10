@@ -3,7 +3,7 @@ const Serie = (serie = {}, action) => {
     return { ...serie, ...action.payload };
   }
   if (action.type === "GET_TV_EPISODES") {
-    return { ...serie, ...action.payload };
+    return { ...serie };
   }
   return {};
 };

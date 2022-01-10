@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { getMovieById })(
   function MovieDetails({ movie, getMovieById }) {
     const { id } = useParams();
-    const [ready, setrReady] = useState("loading");
+    const [ready, setReady] = useState("loading");
 
     useEffect(() => {
       document.title = `NETFLIX | Loading ...`;
@@ -34,12 +34,12 @@ export default connect(mapStateToProps, { getMovieById })(
     useEffect(() => {
       if (movie.success === false) {
         document.title = `NETFLIX | 404 NOT FOUND`;
-        setrReady("404");
+        setReady("404");
       } else if (!movie.success && movie.title) {
         document.title = `NETFLIX | ${movie.title}`;
-        setrReady("ready");
+        setReady("ready");
       } else {
-        setrReady("loading");
+        setReady("loading");
       }
     }, [movie]);
 
@@ -50,7 +50,7 @@ export default connect(mapStateToProps, { getMovieById })(
     }, [ready]);
 
     if (ready === "404") return <_404 />;
-    if (ready === "loading") return <LoadWrapper></LoadWrapper>;
+    if (ready === "loading") return <LoadWrapper ready={ready} />;
     if (ready === "ready")
       return (
         <>

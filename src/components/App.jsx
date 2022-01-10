@@ -39,7 +39,11 @@ export default (function App() {
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/serie/:id" element={<SerieDetails />} />
 
-        <Route path="serie/:id/season/:number" element={<SerieSeasonPage />} />
+        <Route
+          exact
+          path="serie/:id/season/:number"
+          element={<SerieSeasonPage />}
+        />
 
         <Route path="watch/movie/:id" element={<WatchMovie />} />
         <Route
