@@ -7,6 +7,7 @@ import EpisodeItem from "./EpisodeItem";
 import LoadWrapper from "./LoadWrapper";
 import _404 from "./_404";
 import scrollToTop from "../helpers/scrollToTop";
+import _ from "lodash";
 
 const mapStateToProps = (state) => {
   return state;
@@ -31,7 +32,9 @@ export default connect(mapStateToProps, { getSerieById, getSerieEpisodes })(
     }, []);
 
     useEffect(() => {
-      getSerieById(id);
+      if (_.isEmpty(serie)) {
+        getSerieById(id);
+      }
     }, [id, number]);
 
     useEffect(() => {
@@ -39,10 +42,11 @@ export default connect(mapStateToProps, { getSerieById, getSerieEpisodes })(
         document.title = `NETFLIX | 404 NOT FOUND`;
         setrReady("404");
       } else if (!serie.success && serie.name) {
-        const SEASON = serie?.seasons.find((season) => {
-          return season?.season_number == number;
-        });
-        if (SEASON) setSeason(SEASON);
+        setSeason(
+          serie?.seasons.filter((season) => {
+            return season?.season_number == number;
+          })[0]
+        );
       } else {
         setrReady("loading");
       }
@@ -50,8 +54,6 @@ export default connect(mapStateToProps, { getSerieById, getSerieEpisodes })(
 
     useEffect(() => {
       if (season) {
-        // console.log(season);
-
         setrReady("ready");
         document.title = `NETFLIX | ${serie.name} - season ${season?.season_number}`;
         for (let ep = 1; ep <= season.episode_count; ep++) {
