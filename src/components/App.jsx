@@ -12,8 +12,8 @@ import TvShowsPage from "./TvShowsPage";
 import MovieDetails from "./MovieDetails";
 import SerieDetails from "./SerieDetails";
 import SerieSeasonPage from "./SerieSeasonPage";
-// import WatchMovie from "./WatchMovie";
-// import WatchSerie from "./WatchSerie";
+import WatchMovie from "./WatchMovie";
+import WatchSerie from "./WatchSerie";
 // import SearchPage from "./SearchPage";
 import _404 from "./_404";
 
