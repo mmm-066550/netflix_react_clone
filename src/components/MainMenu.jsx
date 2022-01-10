@@ -33,7 +33,7 @@ export default function MainMenu() {
                   <Link to={"/movies"}>Popular Movies</Link>
                 </li>
                 <li>
-                  <Link to={"/movie/now_playing"}>Now Playing Movies</Link>
+                  <Link to={"/movies/now_playing"}>Now Playing Movies</Link>
                 </li>
                 <li>
                   <Link to={"/movies/top_rated"}>Top Rated Movies</Link>
@@ -65,7 +65,7 @@ export default function MainMenu() {
             <div className="my-4 col-sm-6 col-md-3  col-12">
               <ul className="social-links">
                 <li>
-                  <a href="/" target={"_blank"}>
+                  <a href="https://github.com/mmm-066550" target={"_blank"}>
                     <i className="fab fa-github"></i>
                   </a>
                 </li>

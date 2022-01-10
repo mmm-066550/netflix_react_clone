@@ -21,6 +21,7 @@ import sortRateDescending from "./sortRateDescending";
 import filterByLanguage from "./filterByLanguage";
 import initFilteredList from "./initFilteredList";
 import filterByGenre from "./filterByGenre";
+import clear from "./clear";
 export {
   changeIsLoggedIn,
   getTMDBTrendings,
@@ -45,4 +46,5 @@ export {
   initFilteredList,
   filterByGenre,
   getSerieEpisodes,
+  clear,
 };

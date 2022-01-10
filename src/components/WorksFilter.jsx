@@ -86,6 +86,7 @@ export default connect(mapStateToProps, {
     filterByGenre(list, genres);
     if (!genres.length) initFilteredList(list);
   }, [genres]);
+
   return (
     <div className="works-filter">
       <label>{label}</label>
@@ -114,10 +115,19 @@ export default connect(mapStateToProps, {
                     <button
                       className="dropdown-item"
                       onClick={() => {
+                        setcurrentSort("None");
+                        initFilteredList(list);
+                      }}
+                    >
+                      None
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => {
                         setcurrentSort("Rating Descending");
-                        filteredList.length
-                          ? sortRateDescending(filteredList)
-                          : sortRateDescending(list);
+                        sortRateDescending(filteredList);
                       }}
                     >
                       Rating Descending
@@ -211,7 +221,6 @@ export default connect(mapStateToProps, {
                         className="dropdown-item"
                         onClick={() => {
                           setcurrentFilter("All");
-                          filterByLanguage();
                           initFilteredList(list);
                         }}
                       >

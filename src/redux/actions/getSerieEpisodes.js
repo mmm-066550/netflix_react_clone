@@ -2,12 +2,20 @@ import tmdb from "../../apis/tmdb";
 
 const getSerieEpisodes = (id, season, episode) => {
   return async function (dispatch) {
-    const res = await tmdb.get(`/tv/${id}/season/${season}/episode/${episode}`);
-    console.log(res);
-    dispatch({
-      type: "GET_TV_EPISODES",
-      payload: res.data,
-    });
+    try {
+      const res = await tmdb.get(
+        `/tv/${id}/season/${season}/episode/${episode}`
+      );
+      dispatch({
+        type: "GET_TV_EPISODES",
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "GET_TV_EPISODES",
+        payload: error.response.data,
+      });
+    }
   };
 };
 export default getSerieEpisodes;

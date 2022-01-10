@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getMovieById } from "../redux/actions";
 import "../styles/movie_details_page.sass";
 import CastSlider from "./CastSlider";
 import ReviewItem from "./ReviewItem";
 import MoviePageHero from "./MoviePageHero";
+import LoadWrapper from "./LoadWrapper";
+import _ from "lodash";
+import _404 from "./_404";
+import scrollToTop from "../helpers/scrollToTop";
 
 const mapStateToProps = (state) => {
   return state;
@@ -13,18 +17,41 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { getMovieById })(
   function MovieDetails({ movie, getMovieById }) {
-    const location = useLocation();
-    let movieID;
+    const { id } = useParams();
+    const [ready, setrReady] = useState("loading");
 
     useEffect(() => {
-      movieID = location.pathname.split("/")[2];
-      getMovieById(movieID);
+      document.title = `NETFLIX | Loading ...`;
+      scrollToTop();
+      return () => {
+        scrollToTop();
+      };
     }, []);
+    useEffect(() => {
+      getMovieById(id);
+    }, [id]);
 
-    if (movie) {
-      if (movie.title) {
-        document.title = `NETFLIX | ${movie?.title}`;
+    useEffect(() => {
+      if (movie.success === false) {
+        document.title = `NETFLIX | 404 NOT FOUND`;
+        setrReady("404");
+      } else if (!movie.success && movie.title) {
+        document.title = `NETFLIX | ${movie.title}`;
+        setrReady("ready");
+      } else {
+        setrReady("loading");
       }
+    }, [movie]);
+
+    useEffect(() => {
+      if (ready === "loading") {
+        document.title = `NETFLIX | Loading ...`;
+      }
+    }, [ready]);
+
+    if (ready === "404") return <_404 />;
+    if (ready === "loading") return <LoadWrapper></LoadWrapper>;
+    if (ready === "ready")
       return (
         <>
           <div className="movie-details-page">
@@ -35,25 +62,24 @@ export default connect(mapStateToProps, { getMovieById })(
                   <div className="col-12 col-lg-9">
                     <div className="work-main-data">
                       {(() => {
-                        if (movie?.videos?.results[0]?.key) {
-                          return (
-                            <div className="movie-trailer">
-                              <h5 className="mb-4">Movie Trailer</h5>
-                              <div className="trailer-area mb-5">
-                                <iframe
-                                  src={`https://www.youtube-nocookie.com/embed/${movie?.videos?.results[0]?.key}`}
-                                  title="YouTube video player"
-                                  frameBorder="0"
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                  allowFullScreen
-                                ></iframe>
-                              </div>
+                        return (
+                          <div className="movie-trailer">
+                            <h5 className="mb-4">Movie Trailer</h5>
+                            <div className="trailer-area mb-5">
+                              <iframe
+                                src={`https://www.youtube-nocookie.com/embed/${movie?.videos?.results[0]?.key}`}
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              ></iframe>
                             </div>
-                          );
-                        }
+                          </div>
+                        );
                       })()}
 
                       <CastSlider
+                        title={movie?.title}
                         cast={movie?.credits?.cast?.filter((el) => {
                           return el.profile_path;
                         })}
@@ -210,7 +236,5 @@ export default connect(mapStateToProps, { getMovieById })(
           </div>
         </>
       );
-    }
-    return <></>;
   }
 );

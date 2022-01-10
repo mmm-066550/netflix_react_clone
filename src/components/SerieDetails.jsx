@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getSerieById } from "../redux/actions";
 import "../styles/movie_details_page.sass";
-import WorkScore from "./WorkScore";
 import CastSlider from "./CastSlider";
 import SeasonItem from "./SeasonItem";
-import { Link } from "react-router-dom";
-import work_bg from "../assets/images/work-bg.jpg";
 import ReviewItem from "./ReviewItem";
 import SeriePageHero from "./SeriePageHero";
+import LoadWrapper from "./LoadWrapper";
+import _ from "lodash";
+import _404 from "./_404";
+import scrollToTop from "../helpers/scrollToTop";
 
 const mapStateToProps = (state) => {
   return state;
@@ -17,13 +18,38 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { getSerieById })(
   function SerieDetails({ serie, getSerieById }) {
-    const location = useLocation();
-    let serieID;
+    const { id } = useParams();
+
+    const [ready, setrReady] = useState("loading");
 
     useEffect(() => {
-      serieID = location.pathname.split("/")[2];
-      getSerieById(serieID);
-    }, [location]);
+      document.title = `NETFLIX | Loading ...`;
+      scrollToTop();
+      return () => {
+        scrollToTop();
+      };
+    }, []);
+    useEffect(() => {
+      getSerieById(id);
+    }, [id]);
+
+    useEffect(() => {
+      if (serie.success === false) {
+        document.title = `NETFLIX | 404 NOT FOUND`;
+        setrReady("404");
+      } else if (!serie.success && serie.name) {
+        document.title = `NETFLIX | ${serie.name}`;
+        setrReady("ready");
+      } else {
+        setrReady("loading");
+      }
+    }, [serie]);
+
+    useEffect(() => {
+      if (ready === "loading") {
+        document.title = `NETFLIX | Loading ...`;
+      }
+    }, [ready]);
 
     const renderSeasons = () => {
       return serie?.seasons?.map((season) => {
@@ -34,10 +60,9 @@ export default connect(mapStateToProps, { getSerieById })(
         }
       });
     };
-    if (serie) {
-      if (serie.name) {
-        document.title = `NETFLIX | ${serie?.name}`;
-      }
+    if (ready === "404") return <_404 />;
+    if (ready === "loading") return <LoadWrapper></LoadWrapper>;
+    if (ready === "ready")
       return (
         <div className="movie-details-page">
           <SeriePageHero serie={serie} btns={true} />
@@ -59,6 +84,7 @@ export default connect(mapStateToProps, { getSerieById })(
                       </div>
                     </div>
                     <CastSlider
+                      title={serie?.name}
                       cast={serie?.credits?.cast?.filter((el) => {
                         return el.profile_path;
                       })}
@@ -246,8 +272,5 @@ export default connect(mapStateToProps, { getSerieById })(
           </div>
         </div>
       );
-    }
-
-    return <>404</>;
   }
 );

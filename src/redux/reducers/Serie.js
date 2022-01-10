@@ -1,7 +1,10 @@
-const Serie = (serie = null, action) => {
+const Serie = (serie = {}, action) => {
   if (action.type === "GET_SERIE") {
-    return { ...action.payload };
+    return { ...serie, ...action.payload };
   }
-  return serie;
+  if (action.type === "GET_TV_EPISODES") {
+    return { ...serie, ...action.payload };
+  }
+  return {};
 };
 export default Serie;

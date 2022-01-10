@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ResultsContainer from "./ResultsContainer";
 import SideBarFilter from "./SideBarFilter";
 import { useLocation } from "react-router-dom";
+import scrollToTop from "../helpers/scrollToTop";
 import Pagination from "./Pagination";
 import {
   getPopularMovies,
@@ -24,34 +25,41 @@ export default connect(mapStateToProps, {
   getUpcomingMovies,
 })(function MoviesPage(props) {
   const location = useLocation();
+
   const [page, setpage] = useState(1);
-  const [category, setCategory] = useState("popular");
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
-    setCategory(
-      location.pathname.split("/")[2]
-        ? location.pathname.split("/")[2]
-        : "popular"
-    );
+    setCategory(location.pathname.split("/")[2]);
     setpage(location.search.split("=")[1] ? +location.search.split("=")[1] : 1);
-
-    if (category === "popular") {
-      props.getPopularMovies(page);
-      document.title = "NETFLIX | Popular Movies";
+    scrollToTop();
+    return () => {
+      scrollToTop();
+    };
+  }, [location]);
+  useEffect(() => {
+    switch (category) {
+      case undefined:
+        props.getPopularMovies(page);
+        document.title = "NETFLIX | Popular Movies";
+        break;
+      case "now_playing":
+        props.getNowPlayingMovies(page);
+        document.title = "NETFLIX | Now Playing Movies";
+        break;
+      case "top_rated":
+        props.getTopMovies(page);
+        document.title = "NETFLIX | Top Rated Movies";
+        break;
+      case "upcoming":
+        props.getUpcomingMovies(page);
+        document.title = "NETFLIX | Upcoming Movies";
+        break;
+      default:
+        document.title = "NETFLIX | 404 NOT FOUND";
+        break;
     }
-    if (category === "now_playing") {
-      props.getNowPlayingMovies(page);
-      document.title = "NETFLIX | Now Playing Movies";
-    }
-    if (category === "top_rated") {
-      props.getTopMovies(page);
-      document.title = "NETFLIX | Top Rated Movies";
-    }
-    if (category === "upcoming") {
-      props.getUpcomingMovies(page);
-      document.title = "NETFLIX | Upcoming Movies";
-    }
-  }, [location, category, page]);
+  }, [category, page]);
 
   return (
     <>
@@ -62,7 +70,7 @@ export default connect(mapStateToProps, {
         <div className="container">
           <div className="row">
             <SideBarFilter
-              label={`${category} movies`}
+              label={`${category || "Popular"} movies`}
               list={props.movies}
             ></SideBarFilter>
             <ResultsContainer

@@ -11,6 +11,9 @@ export default function HomePage() {
   useEffect(() => {
     document.title = `NETFLIX | Watch Movies And TV Shows Online`;
     scrollToTop();
+    return () => {
+      scrollToTop();
+    };
   }, []);
   return (
     <div>

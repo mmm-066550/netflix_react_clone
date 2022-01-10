@@ -1,7 +1,7 @@
-const Movie = (movie = null, action) => {
+const Movie = (movie = {}, action) => {
   if (action.type === "GET_MOVIE") {
     return { ...action.payload };
   }
-  return movie;
+  return {};
 };
 export default Movie;

@@ -12,8 +12,8 @@ export default function MoviePageHero({ movie, btns }) {
           <img
             className="movie-backdrop-img"
             src={
-              movie?.backdrop_path
-                ? `https://www.themoviedb.org/t/p/w1920_and_h1080_multi_faces${movie?.backdrop_path}`
+              movie.backdrop_path
+                ? `https://www.themoviedb.org/t/p/w1920_and_h1080_multi_faces${movie.backdrop_path}`
                 : work_bg
             }
             alt="backdrop-img"
