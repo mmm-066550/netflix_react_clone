@@ -40,6 +40,7 @@ export default connect(mapStateToProps, {
     };
   }, [location]);
   useEffect(() => {
+    setReady("loading");
     switch (category) {
       case undefined:
         props.getPopularMovies(page);

@@ -14,6 +14,8 @@ import SerieDetails from "./SerieDetails";
 import SerieSeasonPage from "./SerieSeasonPage";
 import WatchMovie from "./WatchMovie";
 import WatchSerie from "./WatchSerie";
+import PeoplePage from "./PeoplePage";
+import PersonPage from "./PersonPage";
 // import SearchPage from "./SearchPage";
 import _404 from "./_404";
 
@@ -38,6 +40,9 @@ export default (function App() {
 
         <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/serie/:id" element={<SerieDetails />} />
+
+        <Route path="/people" element={<PeoplePage />} />
+        <Route path="/person/:id" element={<PersonPage />} />
 
         <Route
           exact

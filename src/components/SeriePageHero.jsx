@@ -71,24 +71,26 @@ export default function SeriePageHero({ serie, btns }) {
                   <div className="work-description  py-3">
                     {serie?.overview}
                   </div>
-                  <div className="work-actions-btns">
-                    <Link
-                      to={`/watch/serie/${serie?.id}/season/1/episode/1`}
-                      className="btn me-3"
-                    >
-                      <i className="fal fa-play me-3"></i>
-                      play
-                    </Link>
-                    {serie?.homepage ? (
-                      <a
-                        href={serie?.homepage}
-                        target="_blank"
-                        className="btn me-3 info-link-btn"
+                  {btns ? (
+                    <div className="work-actions-btns">
+                      <Link
+                        to={`/watch/serie/${serie?.id}/season/1/episode/1`}
+                        className="btn me-3"
                       >
-                        Visit Website
-                      </a>
-                    ) : null}
-                  </div>
+                        <i className="fal fa-play me-3"></i>
+                        play
+                      </Link>
+                      {serie?.homepage ? (
+                        <a
+                          href={serie?.homepage}
+                          target="_blank"
+                          className="btn me-3 info-link-btn"
+                        >
+                          Visit Website
+                        </a>
+                      ) : null}
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </div>

@@ -15,10 +15,16 @@ export default function Pagination({ page }) {
           );
         }
       })()}
-      <Link to={`?page=${+page + 1}`}>
-        <span> page {+page + 1}</span>
-        <i className="fa-2x fal fa-angle-double-right"></i>
-      </Link>
+      {(() => {
+        if (+page < 500) {
+          return (
+            <Link to={`?page=${+page + 1}`}>
+              <span> page {+page + 1}</span>
+              <i className="fa-2x fal fa-angle-double-right"></i>
+            </Link>
+          );
+        }
+      })()}
     </div>
   );
 }

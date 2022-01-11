@@ -21,6 +21,7 @@ import sortRateDescending from "./sortRateDescending";
 import filterByLanguage from "./filterByLanguage";
 import initFilteredList from "./initFilteredList";
 import filterByGenre from "./filterByGenre";
+import getPeople from "./getPeople";
 import clear from "./clear";
 export {
   changeIsLoggedIn,
@@ -47,4 +48,5 @@ export {
   filterByGenre,
   getSerieEpisodes,
   clear,
+  getPeople,
 };

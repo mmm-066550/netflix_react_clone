@@ -42,6 +42,8 @@ export default connect(mapStateToProps, {
   }, [location]);
 
   useEffect(() => {
+    setReady("loading");
+
     switch (category) {
       case undefined:
         document.title = "NETFLIX | Popular Series";
