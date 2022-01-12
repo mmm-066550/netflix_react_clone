@@ -5,9 +5,9 @@ export default function VideoPlayerArea({ season, ep, id }) {
     <div>
       <div className="container py-5">
         <div className="row">
-          <div className="col-8">
+          <div className="col-12 col-lg-8">
             <iframe
-              style={{ width: "100%", minHeight: "550px" }}
+              style={{ width: "100%", minHeight: "500px" }}
               src={
                 season && ep
                   ? `https://www.2embed.ru/embed/tmdb/tv?id=${id}&s=${season}&e=${ep}`

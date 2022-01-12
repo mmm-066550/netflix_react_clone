@@ -39,7 +39,7 @@ export default function PageHeroSlide({ data }) {
               <div className="work-actions-btns">
                 <Link
                   to={`/watch/${data.title ? "movie" : "serie"}/${data.id}/${
-                    data.name ? "season/1/epsoide/1" : ""
+                    data.name ? "season/1/episode/1" : ""
                   }`}
                   className="btn me-3"
                 >

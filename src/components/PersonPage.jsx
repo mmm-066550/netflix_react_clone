@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getPersonById } from "../redux/actions";
 import { useParams } from "react-router-dom";
 import MovieSerieView from "./MovieSerieView";
+import scrollToTop from "../helpers/scrollToTop";
 
 import "../styles/person-page.sass";
 
@@ -21,6 +22,10 @@ export default connect(mapStateToProps, { getPersonById })(function PersonPage({
 
   useEffect(() => {
     getPersonById(id);
+    scrollToTop();
+    return () => {
+      scrollToTop();
+    };
   }, [id]);
 
   useEffect(() => {
