@@ -15,13 +15,14 @@ export default function HomePage() {
       scrollToTop();
     };
   }, []);
+
   return (
-    <div>
+    <>
       <HeroSlider />
       <HomeTrendings />
       <PopularSlider />
       <NowPlayingSlider />
       <TopRatedSlider />
-    </div>
+    </>
   );
 }

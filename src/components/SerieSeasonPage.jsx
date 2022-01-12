@@ -54,7 +54,7 @@ export default connect(mapStateToProps, { getSerieById, getSerieEpisodes })(
         document.title = `NETFLIX | 404 NOT FOUND`;
       }
       if (season) {
-        document.title = `NETFLIX | ${serie.name} - season ${season?.season_number}`;
+        document.title = `NETFLIX | ${serie.name} - Season ${season?.season_number}`;
         if (!season.episode_count) {
           setReady("404");
           document.title = `NETFLIX | 404 NOT FOUND`;

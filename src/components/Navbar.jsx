@@ -10,6 +10,7 @@ import avatar from "../assets/images/avatar.webp";
 
 /// STYLES
 import "../styles/navbar.sass";
+import "../styles/mob-nav-menu.sass";
 
 const mapStateToProps = (state) => {
   return state;
@@ -20,7 +21,10 @@ export default connect(mapStateToProps, { changeIsLoggedIn })(
     const location = useLocation();
 
     const nav = useRef();
+    const menu = useRef();
+    const menu_nav = useRef();
     const home = useRef();
+    const home_nav = useRef();
 
     const [currentPage, setCurrentPage] = useState(null);
     const [navFixed, setNavFixed] = useState(false);
@@ -36,6 +40,20 @@ export default connect(mapStateToProps, { changeIsLoggedIn })(
           el.children[0].classList.add("active");
         }
       });
+
+      [...menu_nav.current.children].map((el) => {
+        el.classList.remove("active");
+        if (currentPage === "") {
+          home_nav.current.classList.add("active");
+        }
+        if (currentPage && el.children[0].innerHTML === currentPage) {
+          el.classList.add("active");
+        }
+      });
+    };
+
+    const closeModal = () => {
+      menu.current.classList.remove("show");
     };
 
     document.addEventListener("scroll", () => {
@@ -57,6 +75,59 @@ export default connect(mapStateToProps, { changeIsLoggedIn })(
 
     return (
       <>
+        <div className="mob-nav-menu d-lg-none" ref={menu}>
+          <header>
+            <div className="row align-items-center">
+              <div className="col">
+                <Link to="/" className="brand-link me-4">
+                  <img
+                    width={120}
+                    src={logo}
+                    alt="netflix logo"
+                    title="NETFLIX"
+                  />
+                </Link>
+              </div>
+              <div className="col text-end">
+                <button
+                  className="p-0 nav-menu-btn"
+                  onClick={() => {
+                    menu.current.classList.remove("show");
+                  }}
+                >
+                  <i className="fal fa-2x fa-times text-white"></i>
+                </button>
+              </div>
+            </div>
+          </header>
+          <ul ref={menu_nav}>
+            <li ref={home_nav}>
+              <Link onClick={closeModal} to={"/"}>
+                home
+              </Link>
+            </li>
+            <li>
+              <Link onClick={closeModal} to={"/movies"}>
+                movies
+              </Link>
+            </li>
+            <li>
+              <Link onClick={closeModal} to={"/series"}>
+                series
+              </Link>
+            </li>
+            <li>
+              <Link onClick={closeModal} to={"/people"}>
+                people
+              </Link>
+            </li>
+            <li>
+              <Link onClick={closeModal} to={"/favourites"}>
+                favourites
+              </Link>
+            </li>
+          </ul>
+        </div>
         <div className="mob-navbar d-lg-none">
           <Link to={"/"} className="home-btn navbar-btn ">
             <i className="fal fa-home"></i>
@@ -162,7 +233,12 @@ export default connect(mapStateToProps, { changeIsLoggedIn })(
                   )}
                 </div>
                 <div className="d-lg-none">
-                  <button className="p-0 nav-menu-btn">
+                  <button
+                    className="p-0 nav-menu-btn"
+                    onClick={() => {
+                      menu.current.classList.add("show");
+                    }}
+                  >
                     <i className="fal fa-2x fa-bars text-white"></i>
                   </button>
                 </div>

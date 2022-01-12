@@ -26,6 +26,10 @@ export default connect(mapStateToProps, { getPeople })(function PeoplePage({
   }, [location]);
 
   useEffect(() => {
+    getPeople(1);
+  }, []);
+
+  useEffect(() => {
     setReady("loading");
     if (page) getPeople(page);
   }, [page]);
@@ -52,20 +56,23 @@ export default connect(mapStateToProps, { getPeople })(function PeoplePage({
   }
   if (ready === "ready")
     return (
-      <>
-        <div
-          className="container pb-5"
-          style={{
-            backgroundImage: `linear-gradient(#000000AA,#000),url(${work_bg})`,
-            backgroundPosition: "top",
-            paddingTop: "113px",
-          }}
-        >
+      <div
+        className="people-container"
+        style={{
+          backgroundImage: `linear-gradient(#000000AA,#000),url(${work_bg})`,
+          backgroundPosition: "top",
+          paddingTop: "113px",
+        }}
+      >
+        <div className="container pb-5">
           <div className="row">
             {people.map((el) => {
               if (el.profile_path)
                 return (
-                  <div key={el.id} className="my-3 col-2">
+                  <div
+                    key={el.id}
+                    className="my-3 col-6 col-sm-4 col-md-3 col-lg-2"
+                  >
                     <div className="position-relative ">
                       <MovieSerieView work={el} />
                     </div>
@@ -73,19 +80,10 @@ export default connect(mapStateToProps, { getPeople })(function PeoplePage({
                 );
             })}
           </div>
-          <div className="row">
+          <div className="row align-items-center">
             <Pagination page={page} />
           </div>
         </div>
-      </>
+      </div>
     );
 });
-
-// if (ready === "404") {
-//   document.title = `NETFLIX | loading ...`;
-//   return <_404 />;
-// }
-// if (ready === "ready") {
-//   document.title = `NETFLIX | Popular People`;
-//   return <>OK</>;
-// }
