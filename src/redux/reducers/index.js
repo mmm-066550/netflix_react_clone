@@ -12,6 +12,7 @@ import Serie from "./Serie";
 import Episodes from "./Episodes";
 import FilteredList from "./Filter";
 import People from "./People";
+import Person from "./Person";
 
 export default combineReducers({
   isUserLoggedIn: User_Login,
@@ -26,4 +27,5 @@ export default combineReducers({
   filteredList: FilteredList,
   episodes: Episodes,
   people: People,
+  person: Person,
 });

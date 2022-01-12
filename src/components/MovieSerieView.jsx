@@ -12,7 +12,7 @@ export default function MovieSerieView({ work }) {
     >
       <WorkScore
         score={
-          work.gender
+          work.profile_path
             ? Math.floor(work.popularity)
             : work.vote_average * 10 || 0
         }
@@ -23,7 +23,7 @@ export default function MovieSerieView({ work }) {
       <div className="poster-img-container">
         <Link
           to={
-            work.gender
+            work.profile_path
               ? `/person/${work.id}`
               : `/${work.title ? "movie" : "serie"}/${work.id}`
           }
@@ -42,23 +42,25 @@ export default function MovieSerieView({ work }) {
         </Link>
 
         <Link
-          to={`/${work.gender ? "person" : work.title ? "movie" : "serie"}/${
-            work.id
-          }`}
+          to={`/${
+            work.profile_path ? "person" : work.title ? "movie" : "serie"
+          }/${work.id}`}
           className="overlay"
         ></Link>
         <Link
           className="watch-btn"
-          title={work.gender ? work.name : `Watch ${work.title || work.name}`}
+          title={
+            work.profile_path ? work.name : `Watch ${work.title || work.name}`
+          }
           to={
-            work.gender
+            work.profile_path
               ? `/person/${work.id}`
               : `/watch/${work.title ? "movie" : "serie"}/${work.id}/${
                   work.name ? "season/1/episode/1" : ""
                 }`
           }
         >
-          {work.gender ? (
+          {work.profile_path ? (
             <i className="fal fa-eye fa-2x"></i>
           ) : (
             <i className="fal fa-play-circle fa-3x"></i>
@@ -68,7 +70,7 @@ export default function MovieSerieView({ work }) {
       <div className="work-info">
         <Link
           to={
-            work.gender
+            work.profile_path
               ? `/person/${work.id}`
               : `/${work.title ? "movie" : "serie"}/${work.id}`
           }

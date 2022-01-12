@@ -23,6 +23,7 @@ import initFilteredList from "./initFilteredList";
 import filterByGenre from "./filterByGenre";
 import getPeople from "./getPeople";
 import clear from "./clear";
+import getPersonById from "./getPersonById";
 export {
   changeIsLoggedIn,
   getTMDBTrendings,
@@ -49,4 +50,5 @@ export {
   getSerieEpisodes,
   clear,
   getPeople,
+  getPersonById,
 };
