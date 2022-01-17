@@ -27,9 +27,9 @@ export default connect(mapStateToProps, { filterByMediaType })(
                 <ul className="search-filter-list">
                   <li>
                     <button
-                      onClick={() => {
-                        filterByMediaType(filteredList, "movie");
-                      }}
+                    // onClick={() => {
+                    // filterByMediaType(filteredList, "movie");
+                    // }}
                     >
                       movies
                     </button>
