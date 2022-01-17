@@ -73,12 +73,12 @@ export default connect(mapStateToProps, {
 
   const renderLanguages = () => {
     let Arr = [];
-    const languages = [...new Set(list.map((el) => el.original_language))];
+    const languages = [...new Set(list?.map((el) => el.original_language))];
     languages.map((lang) => {
-      const count = list.filter((el) => {
+      const count = list?.filter((el) => {
         return el.original_language === lang;
       }).length;
-      Arr.push({ language: lang.toUpperCase(), count });
+      Arr.push({ language: lang?.toUpperCase(), count });
     });
     return Arr;
   };
@@ -89,7 +89,7 @@ export default connect(mapStateToProps, {
 
   return (
     <div className="works-filter">
-      <label>{label}</label>
+      {label ? <label>{label}</label> : null}
       <div className="sort">
         <div className="accordion">
           <div className="accordion-item">
@@ -237,7 +237,7 @@ export default connect(mapStateToProps, {
                               filterByLanguage(list, el.language);
                             }}
                           >
-                            {el.language}
+                            {el.language || "N/A"}
                             <span>({el.count})</span>
                           </button>
                         </li>
@@ -259,7 +259,7 @@ export default connect(mapStateToProps, {
                         onClick={() => {
                           genres.includes(el.id)
                             ? setgenres(
-                                genres.filter((genre) => {
+                                genres?.filter((genre) => {
                                   return genre !== el.id;
                                 })
                               )

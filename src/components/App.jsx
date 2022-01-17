@@ -16,13 +16,13 @@ import WatchMovie from "./WatchMovie";
 import WatchSerie from "./WatchSerie";
 import PeoplePage from "./PeoplePage";
 import PersonPage from "./PersonPage";
-// import SearchPage from "./SearchPage";
+import SearchPage from "./SearchPage";
 import _404 from "./_404";
 
 export default (function App() {
   return (
     <BrowserRouter>
-      <GridTest />
+      {/* <GridTest /> */}
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -56,9 +56,7 @@ export default (function App() {
           element={<WatchSerie />}
         />
 
-        {/* <Route path="search" element={<SearchPage />} /> */}
-        {/* <Route path="search/:category" element={<SearchPage />} /> */}
-
+        <Route path="search" element={<SearchPage />} />
         <Route path={"*"} element={<_404 />}></Route>
       </Routes>
       <MainMenu />

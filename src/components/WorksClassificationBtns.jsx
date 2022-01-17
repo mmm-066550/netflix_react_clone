@@ -41,12 +41,6 @@ export default function WorksClassificationBtns({ btns, pathname }) {
             </Link>
           );
         })}
-        {/* <Link className="current" to={`/movies`}>
-          Popular
-        </Link>
-        <Link to={`/movies/now_playing`}>Now playing</Link>
-        <Link to={`/movies/upcoming`}>Upcoming</Link>
-        <Link to={`/movies/top_rated`}>Top rated</Link> */}
       </div>
     </div>
   );

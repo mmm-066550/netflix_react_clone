@@ -24,6 +24,8 @@ import filterByGenre from "./filterByGenre";
 import getPeople from "./getPeople";
 import clear from "./clear";
 import getPersonById from "./getPersonById";
+import searchTMDB from "./searchTMDB";
+import filterByMediaType from "./filterByMediaType";
 export {
   changeIsLoggedIn,
   getTMDBTrendings,
@@ -51,4 +53,6 @@ export {
   clear,
   getPeople,
   getPersonById,
+  searchTMDB,
+  filterByMediaType,
 };

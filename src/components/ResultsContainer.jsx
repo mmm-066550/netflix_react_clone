@@ -22,18 +22,21 @@ export default connect(mapStateToProps)(function ResultsContainer(props) {
         );
       });
     }
-    return <>Sorry ! 🥺 No results found to your query</>;
+    return <>Sorry ! There are no results that matched your query 🥺.</>;
   };
   return (
     <div className="col-12 col-md-9 results-container p-0">
       <div className="container">
-        <div className="row">
-          <WorksClassificationBtns
-            btns={props.categories}
-            pathname={props.pathname}
-          />
-        </div>
-        <div className="row">{renderList()}</div>
+        {props.categories ? (
+          <div className="row">
+            <WorksClassificationBtns
+              btns={props.categories}
+              pathname={props.pathname}
+            />
+          </div>
+        ) : null}
+
+        <div className="row results">{renderList()}</div>
         <div className="row">{props.children}</div>
       </div>
     </div>

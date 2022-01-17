@@ -18,7 +18,7 @@ export default function MovieSerieView({ work }) {
         }
       />
       <span className="ribbon-container">
-        <div className="ribbon">{work.original_language}</div>
+        <div className="ribbon">{work.original_language || "N/A"}</div>
       </span>
       <div className="poster-img-container">
         <Link
