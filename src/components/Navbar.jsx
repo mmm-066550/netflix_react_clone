@@ -243,7 +243,7 @@ export default connect(mapStateToProps, { changeIsLoggedIn })(
 //                   </button>
 //                 </div>
 //               </div>
-            </div>
+//             </div>
           </div>
         </nav>
       </>
