@@ -196,53 +196,53 @@ export default connect(mapStateToProps, { changeIsLoggedIn })(
                   </li>
                 </ul>
               </div>
-              <div className="col navbar-right-area">
-                <div className="d-none d-lg-flex">
-                  <Link
-                    to={"/search"}
-                    title="Search"
-                    className="search-btn navbar-btn"
-                  >
-                    <i className="fal fa-search"></i>
-                  </Link>
-                  {!isUserLoggedIn ? (
-                    <button
-                      className="login_signup-link ms-4"
-                      onClick={changeIsLoggedIn}
-                    >
-                      login
-                    </button>
-                  ) : (
-                    <>
-                      <Link className="ms-4 navbar-btn user-avatar" to="/">
-                        <img
-                          className="avatar-img"
-                          src={avatar}
-                          alt={"avatar"}
-                          title="Account"
-                        />
-                      </Link>
-                      <button
-                        title="Logout"
-                        className="ms-4 navbar-btn"
-                        onClick={changeIsLoggedIn}
-                      >
-                        <i className="fal fa-power-off"></i>
-                      </button>
-                    </>
-                  )}
-                </div>
-                <div className="d-lg-none">
-                  <button
-                    className="p-0 nav-menu-btn"
-                    onClick={() => {
-                      menu.current.classList.add("show");
-                    }}
-                  >
-                    <i className="fal fa-2x fa-bars text-white"></i>
-                  </button>
-                </div>
-              </div>
+//               <div className="col navbar-right-area">
+//                 <div className="d-none d-lg-flex">
+//                   <Link
+//                     to={"/search"}
+//                     title="Search"
+//                     className="search-btn navbar-btn"
+//                   >
+//                     <i className="fal fa-search"></i>
+//                   </Link>
+//                   {!isUserLoggedIn ? (
+//                     <button
+//                       className="login_signup-link ms-4"
+//                       onClick={changeIsLoggedIn}
+//                     >
+//                       login
+//                     </button>
+//                   ) : (
+//                     <>
+//                       <Link className="ms-4 navbar-btn user-avatar" to="/">
+//                         <img
+//                           className="avatar-img"
+//                           src={avatar}
+//                           alt={"avatar"}
+//                           title="Account"
+//                         />
+//                       </Link>
+//                       <button
+//                         title="Logout"
+//                         className="ms-4 navbar-btn"
+//                         onClick={changeIsLoggedIn}
+//                       >
+//                         <i className="fal fa-power-off"></i>
+//                       </button>
+//                     </>
+//                   )}
+//                 </div>
+//                 <div className="d-lg-none">
+//                   <button
+//                     className="p-0 nav-menu-btn"
+//                     onClick={() => {
+//                       menu.current.classList.add("show");
+//                     }}
+//                   >
+//                     <i className="fal fa-2x fa-bars text-white"></i>
+//                   </button>
+//                 </div>
+//               </div>
             </div>
           </div>
         </nav>
