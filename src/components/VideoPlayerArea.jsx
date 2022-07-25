@@ -10,8 +10,8 @@ export default function VideoPlayerArea({ season, ep, id }) {
               style={{ width: "100%", minHeight: "500px" }}
               src={
                 season && ep
-                  ? `https://www.2embed.ru/embed/tmdb/tv?id=${id}&s=${season}&e=${ep}`
-                  : `https://www.2embed.ru/embed/tmdb/movie?id=${id}`
+                  ? `https://www.2embed.org/embed/series?tmdb=${id}&sea=${season}&epi=${ep}`
+                  : `https://www.2embed.org/embed/movie?tmdb=${id}`
               }
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
