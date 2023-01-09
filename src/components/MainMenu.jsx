@@ -95,7 +95,7 @@ export default function MainMenu() {
                 All rights reserved by
                 <a
                   className="rights"
-                  href="https://moustapha.me"
+                  href="https://mmm066550.me"
                   target={"_blank"}
                 >
                   MOUSTAPHA
